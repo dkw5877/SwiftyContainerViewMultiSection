@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CEBBCCEC1A73572E0029FEDE /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBBCCEA1A73572E0029FEDE /* Crashlytics.framework */; };
-		CEBBCCED1A73572E0029FEDE /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBBCCEB1A73572E0029FEDE /* Fabric.framework */; };
 		CEDE5B041A6C81E300268B36 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDE5B031A6C81E300268B36 /* ViewController.swift */; };
 		CEDFCEDB1A58F22E0008FD6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFCEDA1A58F22E0008FD6C /* AppDelegate.swift */; };
 		CEDFCEE01A58F22E0008FD6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEDFCEDE1A58F22E0008FD6C /* Main.storyboard */; };
@@ -36,8 +34,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CEBBCCEA1A73572E0029FEDE /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		CEBBCCEB1A73572E0029FEDE /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		CEDE5B031A6C81E300268B36 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CEDFCED51A58F22D0008FD6C /* SwiftyContainerViewMultiSection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyContainerViewMultiSection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEDFCED91A58F22D0008FD6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,8 +59,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEBBCCEC1A73572E0029FEDE /* Crashlytics.framework in Frameworks */,
-				CEBBCCED1A73572E0029FEDE /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,8 +75,6 @@
 		CEDFCECC1A58F22D0008FD6C = {
 			isa = PBXGroup;
 			children = (
-				CEBBCCEA1A73572E0029FEDE /* Crashlytics.framework */,
-				CEBBCCEB1A73572E0029FEDE /* Fabric.framework */,
 				CEDFCED71A58F22D0008FD6C /* SwiftyContainerViewMultiSection */,
 				CEDFCEED1A58F22E0008FD6C /* SwiftyContainerViewMultiSectionTests */,
 				CEDFCED61A58F22D0008FD6C /* Products */,
