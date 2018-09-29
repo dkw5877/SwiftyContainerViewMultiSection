@@ -1,34 +1,35 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6724" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageContentViewController" customModule="SwiftyContainerViewMultiSection" customModuleProvider="target">
             <connections>
-                <outlet property="heightConstraint" destination="awW-1N-358" id="PdH-hp-mlQ"/>
                 <outlet property="imageView" destination="SGC-yl-p1w" id="Btt-4j-qdd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="widthConstraint" destination="Qcd-xr-RU1" id="2aE-k9-Y4E"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SGC-yl-p1w">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="600" id="Qcd-xr-RU1"/>
-                        <constraint firstAttribute="height" constant="600" id="awW-1N-358"/>
-                    </constraints>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="SGC-yl-p1w" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="3VY-JB-hOL"/>
-                <constraint firstItem="SGC-yl-p1w" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fY4-zx-vlY"/>
+                <constraint firstItem="SGC-yl-p1w" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="30V-kj-1hm"/>
+                <constraint firstAttribute="trailing" secondItem="SGC-yl-p1w" secondAttribute="trailing" id="T1X-dw-hKs"/>
+                <constraint firstItem="SGC-yl-p1w" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="alc-FY-aMF"/>
+                <constraint firstAttribute="bottom" secondItem="SGC-yl-p1w" secondAttribute="bottom" id="pmR-Kr-ez0"/>
             </constraints>
         </view>
     </objects>

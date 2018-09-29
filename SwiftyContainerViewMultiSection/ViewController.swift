@@ -22,13 +22,13 @@ class ViewController: UIViewController {
     private var content = [UIViewController]()
 
     //timer for the rotation/animations
-    private var timer = NSTimer()
+    private var timer = Timer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         //we'll set the parents color so we can see the parent as we run the app
-        self.view.backgroundColor = UIColor.greenColor()
+        self.view.backgroundColor = UIColor.black
 
         /* create some view controllers to use in the example, this is to simulate the content provided by a client */
         let imageVC = ImageContentViewController(nibName: "ImageContentViewController", bundle: nil)
@@ -37,20 +37,17 @@ class ViewController: UIViewController {
         self.content = [imageVC,tableVC,collectionVC];
 
         //set the inital location of the view controllers
-        self.displayTopContentViewController(collectionVC)
-        self.displayBottomLeftContentViewController(tableVC)
-        self.displayBottomRightContentViewController(imageVC)
+        self.displayTopContentViewController(content: collectionVC)
+        self.displayBottomLeftContentViewController(content: tableVC)
+        self.displayBottomRightContentViewController(content: imageVC)
 
         //create a timer to simulate changes by a client
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(4, target: self, selector: "rotateChildViewsWithAnimation", userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(rotateChildViewsWithAnimation), userInfo: nil, repeats: true)
 
         //swap the location of child views in clockwise order w/o animation
-//        self.timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "rotateChildViewsWithoutAnimation", userInfo: nil, repeats: true)
+//        self.timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(ViewController.rotateChildViewsWithoutAnimation), userInfo: nil, repeats: true)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 
     //Basic steps in adding child view controllers
     //step 1 - add the child view controller to the container's list of view controllers
@@ -71,7 +68,7 @@ class ViewController: UIViewController {
         self.view.addSubview(content.view)
 
         //notify child that it now has a parent view
-        content.didMoveToParentViewController(self)
+        content.didMove(toParentViewController: self)
         
     }
 
@@ -92,7 +89,7 @@ class ViewController: UIViewController {
         self.topViewController = content
 
         //notify child that it now has a parent view
-        content.didMoveToParentViewController(self)
+        content.didMove(toParentViewController: self)
 
     }
 
@@ -113,7 +110,7 @@ class ViewController: UIViewController {
         self.bottomLeftViewController = content
 
         //notify child that it now has a parent view
-        content.didMoveToParentViewController(self)
+        content.didMove(toParentViewController: self)
 
     }
 
@@ -134,7 +131,7 @@ class ViewController: UIViewController {
         self.bottomRightViewController = content
         
         //notify child that it now has a parent view
-        content.didMoveToParentViewController(self)
+        content.didMove(toParentViewController: self)
         
     }
 
@@ -147,7 +144,7 @@ class ViewController: UIViewController {
     private func hideContentViewController(content:UIViewController){
 
         //notify view controller it will no longer have a parent
-        content.willMoveToParentViewController(nil)
+        content.willMove(toParentViewController: nil)
 
         //remove the view from the parents hierarchy
         content.view.removeFromSuperview()
@@ -157,45 +154,44 @@ class ViewController: UIViewController {
     }
 
     /* simple method move child view controllers location in counter-clockwise order around the screen */
-    func rotateChildViewsWithoutAnimation(){
-        /* store the current location of the controllers*/
+    @objc func rotateChildViewsWithoutAnimation(){
+        /* store the current location of the controllers */
         let top = self.topViewController
         let bottomLeft = self.bottomLeftViewController
         let bottomRight = self.bottomRightViewController
 
         //move the top view controller to the bottom left corner
-        self.hideContentViewController(top)
-        self.displayContentViewController(top, frame: self.bottomLeftView.frame)
+        self.hideContentViewController(content: top)
+        self.displayContentViewController(content: top, frame: self.bottomLeftView.frame)
         self.bottomLeftViewController = top;
 
         //move the bottom left view to the bottom right corner
-        self.hideContentViewController(bottomLeft)
-        self.displayContentViewController(bottomLeft, frame: self.bottomRightView.frame)
+        self.hideContentViewController(content: bottomLeft)
+        self.displayContentViewController(content: bottomLeft, frame: self.bottomRightView.frame)
         self.bottomRightViewController = bottomLeft
 
         //move the bottom right view to the top spot
-        self.hideContentViewController(bottomRight)
-        self.displayContentViewController(bottomRight, frame: self.topView.frame)
+        self.hideContentViewController(content: bottomRight)
+        self.displayContentViewController(content: bottomRight, frame: self.topView.frame)
         self.topViewController = bottomRight
     }
 
 
     /* This method initates the swapping of child view controllers from the top to bottom (left), and then from the top
         to the bottom (right) */
-     func rotateChildViewsWithAnimation() {
+    @objc func rotateChildViewsWithAnimation() {
 
-        self.swapTopViewControllerToBottomLeftController(self.bottomLeftViewController, newViewController: self.topViewController, startFrame:self.topView.frame,endFrame:self.bottomLeftView.frame)
+        self.swapTopViewControllerToBottomLeftController(oldViewController: self.bottomLeftViewController, newViewController: self.topViewController, startFrame:self.topView.frame,endFrame:self.bottomLeftView.frame)
 
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) { () -> Void in
-            self.swapTopViewControllerToBottomRightController(self.bottomRightViewController, newViewController: self.topViewController, startFrame: self.topView.frame, endFrame: self.bottomRightView.frame)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.swapTopViewControllerToBottomRightController(oldViewController: self.bottomRightViewController, newViewController: self.topViewController, startFrame: self.topView.frame, endFrame: self.bottomRightView.frame)
         }
     }
 
 
-    /* The next two methods are used to swap specifc view controllers from/to specifced locations. In order to use the animation, both view controllers need to have the same parent. This means that we cannot remove (hide) the view controllers until after the animation completes. We use specifc display methods for each location to handle the details after the move, such as the final location (top, left or right), setting the content size and notifying the parent 
+    /* The next two methods are used to swap specifc view controllers from/to specified locations. In order to use the animation, both view controllers need to have the same parent. This means that we cannot remove (hide) the view controllers until after the animation completes. We use specifc display methods for each location to handle the details after the move, such as the final location (top, left or right), setting the content size and notifying the parent
         
-        @note: We remove the view controllers as children and then add them back again using locaiton specific methods. This allows us to track a view controllers final location and to update the childs preferred content size in a sinle place when the move occurs. We could just have manipulate the views in the parents view hierarchy, and notify the child that their position (frame and size) has changed in order for the child to layout their subviews again
+        @note: We remove the view controllers as children and then add them back again using location specific methods. This allows us to track a view controllers final location and to update the childs preferred content size in a sinle place when the move occurs. We could just have manipulate the views in the parents view hierarchy, and notify the child that their position (frame and size) has changed in order for the child to layout their subviews again
     
     */
 
@@ -203,7 +199,7 @@ class ViewController: UIViewController {
     private func swapTopViewControllerToBottomLeftController(oldViewController:UIViewController, newViewController:UIViewController, startFrame:CGRect, endFrame:CGRect){
 
         /* in order to use the transitionFromViewController method, both view controllers must have the same parent */
-        self.transitionFromViewController(oldViewController, toViewController: newViewController, duration: 0.75, options:UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+        self.transition(from: oldViewController, to: newViewController, duration: 0.75, options:UIViewAnimationOptions.curveEaseInOut, animations: { () -> Void in
 
             //new view will take the place of the old view
             newViewController.view.frame = endFrame
@@ -214,13 +210,13 @@ class ViewController: UIViewController {
 
             }) { (Bool) -> Void in
 
-                /* remove view controllers from current locations and the parent view. We remove the old view controllers as they will be added again as children in the final step. */
-                self.hideContentViewController(oldViewController)
-                self.hideContentViewController(newViewController)
+                /* remove view controllers from current location and the parent view. We remove the old view controllers as they will be added again as children in the final step. */
+                self.hideContentViewController(content: oldViewController)
+                self.hideContentViewController(content: newViewController)
 
                 /* add view controllers to new locations */
-                self.displayTopContentViewController(oldViewController)
-                self.displayBottomLeftContentViewController(newViewController)
+                self.displayTopContentViewController(content: oldViewController)
+                self.displayBottomLeftContentViewController(content: newViewController)
         }
     }
 
@@ -228,7 +224,7 @@ class ViewController: UIViewController {
     private func swapTopViewControllerToBottomRightController(oldViewController:UIViewController, newViewController:UIViewController, startFrame:CGRect, endFrame:CGRect){
 
         /* in order to use the transitionFromViewController method, both view controllers must have the same parent */
-        self.transitionFromViewController(oldViewController, toViewController: newViewController, duration: 0.75, options:UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+        self.transition(from: oldViewController, to: newViewController, duration: 0.75, options:UIViewAnimationOptions.curveEaseInOut, animations: { () -> Void in
 
             //new view will take the place of the old view
             newViewController.view.frame = endFrame
@@ -237,16 +233,13 @@ class ViewController: UIViewController {
             }) { (Bool) -> Void in
 
                 /* remove view controllers from current locations, and the parent view. This is not strictly necessary in this example as all view controllers are stored in the parent object, we could just manipulate the views */
-                self.hideContentViewController(oldViewController)
-                self.hideContentViewController(newViewController)
+                self.hideContentViewController(content: oldViewController)
+                self.hideContentViewController(content: newViewController)
 
                 /* add view controllers to new locations */
-                self.displayTopContentViewController(oldViewController)
-                self.displayBottomRightContentViewController(newViewController)
+                self.displayTopContentViewController(content: oldViewController)
+                self.displayBottomRightContentViewController(content: newViewController)
         }
     }
-
-
-
 }
 

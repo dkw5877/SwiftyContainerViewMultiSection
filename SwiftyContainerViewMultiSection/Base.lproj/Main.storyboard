@@ -1,7 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="ipad9_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,22 +23,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cq0-G9-GsL">
-                                <rect key="frame" x="19" y="34" width="730" height="470"/>
-                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cq0-G9-GsL">
+                                <rect key="frame" x="20" y="20" width="728" height="512"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e05-p9-T2P">
-                                <rect key="frame" x="21" y="524" width="360" height="500"/>
-                                <color key="backgroundColor" red="0.80000000000000004" green="1" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e05-p9-T2P">
+                                <rect key="frame" x="20" y="540" width="384" height="476"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="1" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XXb-4F-ZxO">
-                                <rect key="frame" x="389" y="524" width="360" height="500"/>
-                                <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XXb-4F-ZxO">
+                                <rect key="frame" x="412" y="540" width="336" height="476"/>
+                                <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="XXb-4F-ZxO" firstAttribute="top" secondItem="cq0-G9-GsL" secondAttribute="bottom" constant="8" symbolic="YES" id="Ojf-gw-ZUm"/>
+                            <constraint firstItem="cq0-G9-GsL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Q9K-xa-hl4"/>
+                            <constraint firstItem="XXb-4F-ZxO" firstAttribute="trailing" secondItem="cq0-G9-GsL" secondAttribute="trailing" id="R4p-N2-Yyo"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="e05-p9-T2P" secondAttribute="bottom" constant="8" symbolic="YES" id="W37-j5-u1A"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XXb-4F-ZxO" secondAttribute="bottom" constant="8" symbolic="YES" id="Zrd-FM-Faf"/>
+                            <constraint firstItem="e05-p9-T2P" firstAttribute="leading" secondItem="cq0-G9-GsL" secondAttribute="leading" id="cgd-tv-Ful"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cq0-G9-GsL" secondAttribute="trailing" id="kTi-cW-9Pu"/>
+                            <constraint firstItem="e05-p9-T2P" firstAttribute="top" secondItem="cq0-G9-GsL" secondAttribute="bottom" constant="8" symbolic="YES" id="lME-EP-QWK"/>
+                            <constraint firstItem="XXb-4F-ZxO" firstAttribute="leading" secondItem="e05-p9-T2P" secondAttribute="trailing" constant="8" symbolic="YES" id="mK0-O3-jlA"/>
+                            <constraint firstItem="e05-p9-T2P" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="oIV-l2-UG5"/>
+                            <constraint firstItem="cq0-G9-GsL" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="uVR-q8-wt0"/>
+                            <constraint firstItem="cq0-G9-GsL" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.5" id="yCe-b1-4g0"/>
+                        </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
                         <outlet property="bottomLeftView" destination="e05-p9-T2P" id="5pe-aa-HJi"/>
                         <outlet property="bottomRightView" destination="XXb-4F-ZxO" id="CAp-L0-DTD"/>

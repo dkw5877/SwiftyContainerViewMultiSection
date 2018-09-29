@@ -12,11 +12,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     @IBOutlet weak var tableView: UITableView!
 
-    @IBOutlet weak var widthConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
-
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
@@ -26,50 +22,43 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.clearColor()
-
-        let window =  UIApplication.sharedApplication().delegate?.window??
-
-        //self.tableView = UITableView(frame: CGRectMake(0, 0, 600, 600), style: UITableViewStyle.Plain)
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cellID")
-        self.tableView.delegate = self
-        self.tableView.dataSource  = self
+        view.backgroundColor = .black
+        tableView.backgroundColor = .black
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellID")
+        tableView.delegate = self
+        tableView.dataSource  = self
 
         //child will layout using the bounds of their super view. This increases the reusability of the child view controller;
-        self.tableView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.widthConstraint.constant = self.preferredContentSize.width
-        self.heightConstraint.constant = self.preferredContentSize.height
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        self.tableView.autoresizingMask =  [.flexibleWidth, .flexibleHeight]
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1;
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 30;
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cellID")
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cellID")
         cell.textLabel?.text = "section:\(indexPath.section)  row:\(indexPath.row)"
+        cell.textLabel?.layer.backgroundColor = UIColor(red: 1.0, green: 204/255, blue: 102/255, alpha: 1.0).cgColor
+        cell.contentView.backgroundColor = .blue
         return cell
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
     /* called when a view controller will gain or lose a parent view controller */
-    override func willMoveToParentViewController(parent: UIViewController?) {
+    override func willMove(toParentViewController parent: UIViewController?) {
 
     }
 
     /* called when a view controller has moved to its new parent view controller */
-    override func didMoveToParentViewController(parent: UIViewController?) {
+    override func didMove(toParentViewController parent: UIViewController?) {
         
     }
 

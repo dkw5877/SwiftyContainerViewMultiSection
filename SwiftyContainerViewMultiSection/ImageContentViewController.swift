@@ -11,10 +11,8 @@ import UIKit
 class ImageContentViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var widthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
-
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
@@ -24,17 +22,11 @@ class ImageContentViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.clearColor()
-        self.imageView.image = UIImage(named: "holidays")
+        view.backgroundColor = UIColor.clear
+        imageView.image = UIImage(named: "holidays")
 
         //child will layout using the bounds of their super view. This increases the reusability of the child view controller;
-        self.imageView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.widthConstraint.constant = self.preferredContentSize.width
-        self.heightConstraint.constant = self.preferredContentSize.height
+        imageView.autoresizingMask =  [.flexibleWidth, .flexibleHeight]
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,12 +34,12 @@ class ImageContentViewController: UIViewController {
     }
 
     /* called when a view controller will gain or lose a parent view controller */
-    override func willMoveToParentViewController(parent: UIViewController?) {
+    override func willMove(toParentViewController parent: UIViewController?) {
 
     }
 
     /* called when a view controller has moved to its new parent view controller */
-    override func didMoveToParentViewController(parent: UIViewController?) {
+    override func didMove(toParentViewController parent: UIViewController?) {
         
     }
 }
